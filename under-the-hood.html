@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">hello my react</div>
+    <!-- IMPORTING REACT SCRIPTS -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- App script we can make it as separate file like App.js -->
+    <script>
+      // another component
+      const Counter = (props) => {
+        return React.createElement("div", {}, [
+          React.createElement("h1", {}, props.name),
+          React.createElement("h2", {}, props.age),
+        ]);
+      };
+
+      const App = () => {
+        // we use React.createElement to create an element in dom
+        // React.createElement(1,2,3) ; 1->element,2->attributes,3->children[] or content itself
+        return React.createElement("div", {}, [
+          React.createElement(Counter, { name: "jithin", age: 22 }, null),
+        ]);
+      };
+
+      // to render in DOM older version
+      // ReactDOM.render(
+      //   React.createElement(App),
+      //   document.getElementById("root")
+      // );
+
+      // to render in DOM new v18
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>

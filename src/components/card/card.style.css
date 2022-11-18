@@ -1,0 +1,33 @@
+.card_container {
+  background-color: #fff;
+  width: 210px;
+  height: 200px;
+  margin: 10px;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.card_container:hover {
+  transform: scale(1.02);
+}
+
+.card_title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.card_subtitle {
+  margin: 2px 0;
+}
+.avatar_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar {
+  width: 150px;
+  height: auto;
+}
