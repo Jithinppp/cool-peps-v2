@@ -1,25 +1,33 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import "./App.css";
 import CardList from "./components/card-list/Card-list.component";
 import SearchBox from "./components/search-box/Search-box.component";
+import { getData } from "./utils/data.utils";
+
+export type Peps = {
+  id: number;
+  name: string;
+  website: string;
+};
 
 const App = () => {
-  // console.log("app render");
-  // defining states
   const [searchField, setSearchField] = useState("");
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<Peps[]>([]);
   const [filteredUsers, setFilteredUsers] = useState(users);
 
   // making sideEffect
   useEffect(() => {
-    // console.log("fetching from server API");
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    const fetchData = async () => {
+      const res = await getData<Peps[]>(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setUsers(res);
+    };
+    fetchData();
   }, []);
 
   // onChange input handler
-  const onSearchChange = (e) => {
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>): void => {
     // console.log("change in input");
     const searchField = e.target.value.toLowerCase();
     setSearchField(() => {
@@ -49,6 +57,8 @@ const App = () => {
     </div>
   );
 };
+
+export default App;
 
 // !class based approach
 // import { Component } from "react";
@@ -94,5 +104,4 @@ const App = () => {
 //     );
 //   }
 // }
-
-export default App;
+// export default App;

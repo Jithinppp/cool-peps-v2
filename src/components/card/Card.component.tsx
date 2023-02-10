@@ -1,6 +1,11 @@
+import { Peps } from "../../App";
 import "./card.style.css";
 
-const Card = ({ user }) => {
+type UserProps = {
+  user: Peps;
+};
+
+const Card = ({ user }: UserProps) => {
   const { name, website } = user;
   return (
     <div className="card_container">
